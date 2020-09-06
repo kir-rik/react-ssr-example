@@ -1,17 +1,20 @@
 {
   "name": "react-example",
   "version": "1.0.0",
+  "private": true,
   "main": "index.js",
   "repository": "https://github.com/kir-rik/react-example.git",
   "author": "kir_rik <kir-rik-90@yandex.ru>",
   "license": "MIT",
   "scripts": {
-    "dev": "webpack"
+    "build:client": "webpack --config webpack/client.config.js --mode development",
+    "build:server": "webpack --config webpack/server.config.js --mode development",
+    "start:server": "node dist/server.js"
   },
-  "dependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
-  },
+  "workspaces": [
+    "client",
+    "server"
+  ],
   "devDependencies": {
     "@babel/core": "^7.11.1",
     "@babel/plugin-proposal-class-properties": "^7.10.4",
@@ -24,6 +27,7 @@
     "prettier": "^2.0.5",
     "style-loader": "^1.2.1",
     "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "webpack-node-externals": "^2.5.2"
   }
 }

@@ -3,14 +3,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   watch: true,
-  entry: './src/index.jsx',
+  context: path.resolve(__dirname, '../client/src'),
+  entry: './index.jsx',
   mode: 'development',
   devtool: 'inline-source-map',
   output: {
     filename: './main.js',
   },
   resolve: {
-    modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+    modules: [path.resolve(__dirname, '../client/src'), 'node_modules'],
     extensions: ['.jsx', '.js', '.css'],
   },
   module: {
@@ -18,9 +19,15 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/env', '@babel/preset-react'],
+              plugins: ['@babel/plugin-proposal-class-properties'],
+            },
+          },
+        ],
       },
       {
         test: /\.css$/i,
@@ -43,7 +50,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      template: './index.html',
     }),
   ],
 };
