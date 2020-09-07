@@ -1,10 +1,10 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import store from '../../redux/store';
+import getStore from '../../redux/getStore';
 import Greetings from '../Greetings';
 
 export default () => (
-  <Provider store={store}>
+  <Provider store={getStore(window.__PRELOADED_STATE__)}>
     <Greetings />
   </Provider>
 );
