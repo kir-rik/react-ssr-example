@@ -1,3 +1,9 @@
-import React from 'react';
+import { connect } from 'react-redux';
 
-export default ({ name }) => <h1>Greetings {name}</h1>;
+import GreetingsPure from './GreetingsPure';
+
+const mapStateToProps = ({ userInfoSubstore }) => ({
+  name: userInfoSubstore.userName,
+});
+
+export default connect(mapStateToProps)(GreetingsPure);
